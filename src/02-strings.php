@@ -21,7 +21,8 @@ function snakeCaseToCamelCase(string $input){
  * @param  string  $input
  * @return string
  */
-function mirrorMultibyteString(string $input){$array_input = explode(' ', $input);
+function mirrorMultibyteString(string $input){
+    $array_input = explode(' ', $input);
     foreach ($array_input as &$value){
         $encoding = mb_detect_encoding($value);
         $length   = mb_strlen($value, $encoding);
