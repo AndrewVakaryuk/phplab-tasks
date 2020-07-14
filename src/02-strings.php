@@ -21,17 +21,22 @@ function snakeCaseToCamelCase(string $input){
  * @param  string  $input
  * @return string
  */
-function mirrorMultibyteString(string $input){
-    $array_input = explode(' ', $input);
-    $len_arr = count($array_input);
-    for ($i = 0; $i < $len_arr; $i++){
-        $length_word = iconv_strlen($array_input[$i]);
-        for ($j = ($length_word - 1); $j >= 0; $j--){
-            echo $array_input[$i][$j];
+function mirrorMultibyteString(string $input){$array_input = explode(' ', $input);
+    foreach ($array_input as &$value){
+        $encoding = mb_detect_encoding($value);
+        $length   = mb_strlen($value, $encoding);
+        $reversed = '';
+        while ($length-- > 0) {
+            $reversed .= mb_substr($value, $length, 1, $encoding);
         }
-        echo ' ';
+        $value = $reversed;
+        unset($value);
     }
+    return implode(' ', $array_input);
 }
+/** I tried to solve the task by myself, but it didn't work for cyrillic characters,
+ *  so I googled it and found solution on https://kvz.io/reverse-a-multibyte-string-in-php.html
+ */
 
 /**
  * My friend wants a new band name for her band.
