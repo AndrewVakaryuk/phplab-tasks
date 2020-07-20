@@ -43,11 +43,9 @@ function isLeapYear(int $year){
     if ($year < 1900){
         throw new InvalidArgumentException('Expected value is above 1900. Your input is'  . $year);
     } else if ($year%4 == 0 and $year%100 !== 0 or $year%400 == 0){
-        $result = True;
-    } else {
-        $result = False;
+        return True;
     }
-    return $result;
+    return False;
 }
     //echo isLeapYear(2016)
 /**
