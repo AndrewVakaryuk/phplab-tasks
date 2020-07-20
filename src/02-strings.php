@@ -8,8 +8,7 @@
  * @return string
  */
 function snakeCaseToCamelCase(string $input){
-    $input = str_replace( ' ', '', ucwords(str_replace( '_', ' ', $input)));
-    return lcfirst($input);
+    return lcfirst(str_replace( ' ', '', ucwords(str_replace( '_', ' ', $input))));
 }
     //echo snakeCaseToCamelCase('hello_world');
 /**

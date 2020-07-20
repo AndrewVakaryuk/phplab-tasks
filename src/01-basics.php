@@ -42,10 +42,8 @@ function getMinuteQuarter(int $minute)
 function isLeapYear(int $year){
     if ($year < 1900){
         throw new InvalidArgumentException('Expected value is above 1900. Your input is'  . $year);
-    } else if ($year%4 == 0 and $year%100 !== 0 or $year%400 == 0){
-        return True;
     }
-    return False;
+    return ($year%4 == 0 and $year%100 !== 0 or $year%400 == 0);
 }
     //echo isLeapYear(2016)
 /**
