@@ -33,11 +33,8 @@ function getUniqueValue(array $input){
             unset ($arr_inside_out[$key]);
         }
     }
-    if (count($arr_inside_out) == 0){
-        return 0;
-    } else {
-        return min(array_keys($arr_inside_out));
-    }
+    //I'm not familiar with that kind of syntax and will appreciate if you suggest something to read about
+    return (!count($arr_inside_out) ? 0 : min(array_keys($arr_inside_out)));
 }
 /**
  */
@@ -67,5 +64,22 @@ function getUniqueValue(array $input){
  * @return array
  */
 function groupByTag(array $input){
-
+    //create an array, for values of 'tags' as elements(and array) that consist
+    //corresponding values of 'name'.
+    $arr_tags = [];
+    //iterate through $input
+    foreach ($input as $value){
+        //iterate through 'tags' as an array and add a value from 'name'
+        //that corresponds to a value from "tags" array.
+        foreach($value['tags'] as $tag){
+            $arr_tags[$tag][] = $value['name'];
+        }
+    }
+    //sort the array by key.
+    ksort($arr_tags);
+    //sort the values inside each element of $arr_tags.
+    foreach ($arr_tags as &$value){
+        sort($value);
+    }
+    return $arr_tags;
 }
