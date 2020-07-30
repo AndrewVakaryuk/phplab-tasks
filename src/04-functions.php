@@ -35,9 +35,12 @@ function sayHelloArgument($arg)
  */
 function sayHelloArgumentWrapper($arg)
 {
-    // put your code here
-
+    if (!is_string($arg) and !is_numeric($arg) and !is_bool($arg))
+    {
+        throw new InvalidArgumentException('String, numbers or boolean are allowed only');
+    }
     return sayHelloArgument($arg);
+
 }
 
 /**
@@ -67,7 +70,15 @@ function countArguments()
  * @return array
  * @throws InvalidArgumentException
  */
-function countArgumentsWrapper()
+function countArgumentsWrapper($arg, ...$param)
 {
-    // put your code here
+    if (!is_string($arg)){
+        throw new InvalidArgumentException('First argument isn\'t string');
+    }
+    foreach ($param as $value){
+        if(!is_string($value)){
+            throw new InvalidArgumentException('String are allowed only, bro!');
+        }
+    }
+    return countArguments($arg, ...$param);
 }
