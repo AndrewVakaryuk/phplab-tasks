@@ -70,15 +70,13 @@ function countArguments()
  * @return array
  * @throws InvalidArgumentException
  */
-function countArgumentsWrapper($arg, ...$param)
+function countArgumentsWrapper()
 {
-    if (!is_string($arg)){
-        throw new InvalidArgumentException('First argument isn\'t string');
-    }
-    foreach ($param as $value){
+    $arg = func_get_args();
+    foreach ($arg as $value){
         if(!is_string($value)){
             throw new InvalidArgumentException('String are allowed only, bro!');
         }
     }
-    return countArguments($arg, ...$param);
+    return countArguments($arg);
 }

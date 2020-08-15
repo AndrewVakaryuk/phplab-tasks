@@ -5,12 +5,21 @@ use PHPUnit\Framework\TestCase;
 
 class SayHelloArgumentWrapperTest extends TestCase
 {
-    public function testSayHelloExceptionNull(){
-        $this->expectException(InvalidArgumentException::class);
-        sayHelloArgumentWrapper(null);
+    /**
+     * @param $input
+     * @param $expectedException
+     * @dataProvider provideDataForExceptions
+     */
+    public function testSayHelloExceptions($input, $expectedException)
+    {
+        $this->expectException($expectedException);
+        sayHelloArgumentWrapper($input);
     }
-    public function testSayHelloExceptionArray(){
-        $this->expectException(InvalidArgumentException::class);
-        sayHelloArgumentWrapper([1, 1]);
+    public function provideDataForExceptions()
+    {
+        return [
+        [null, InvalidArgumentException::class],
+        [[1, 1], InvalidArgumentException::class]
+        ];
     }
 }
