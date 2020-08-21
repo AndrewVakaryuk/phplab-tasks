@@ -8,10 +8,15 @@
  *
  * @param  array  $airports
  * @return string[]
+ *
  */
 function getUniqueFirstLetters(array $airports)
 {
-    // put your logic here
-
-    return ['A', 'B', 'C'];
+    $first_letters = [];
+    foreach ($airports as $airport_arr) {
+        $first_letters[] = substr($airport_arr['name'], 0, 1);
+    }
+    $unique_f_letters = array_unique($first_letters);
+    sort($unique_f_letters);
+    return $unique_f_letters;
 }
