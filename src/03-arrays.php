@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The $input variable contains an array of digits
  * Return an array which will contain the same digits but repetitive by its value
@@ -8,14 +9,15 @@
  * @param  array  $input
  * @return array
  */
-function repeatArrayValues(array $input){
-    $repeated_arr_val = [];
-    foreach ($input as $value){
-        for ($i = $value; $i > 0; $i--){
-            $repeated_arr_val[] = $value;
-        }
+function repeatArrayValues(array $input)
+{
+  $repeated_arr_val = [];
+  foreach ($input as $value) {
+    for ($i = $value; $i > 0; $i--) {
+      $repeated_arr_val[] = $value;
     }
-    return $repeated_arr_val;
+  }
+  return $repeated_arr_val;
 }
 
 /**
@@ -26,18 +28,17 @@ function repeatArrayValues(array $input){
  * @param  array  $input
  * @return int
  */
-function getUniqueValue(array $input){
-    $arr_inside_out = array_count_values($input);
-    foreach ($arr_inside_out as $key => $value){
-        if ($value != 1){
-            unset ($arr_inside_out[$key]);
-        }
+function getUniqueValue(array $input)
+{
+  $arr_inside_out = array_count_values($input);
+  foreach ($arr_inside_out as $key => $value) {
+    if ($value != 1) {
+      unset($arr_inside_out[$key]);
     }
-    //I'm not familiar with that kind of syntax and will appreciate if you suggest something to read about
-    return (!count($arr_inside_out) ? 0 : min(array_keys($arr_inside_out)));
+  }
+
+  return (!count($arr_inside_out) ? 0 : min(array_keys($arr_inside_out)));
 }
-/**
- */
 
 /**
  * The $input variable contains an array of arrays
@@ -63,23 +64,24 @@ function getUniqueValue(array $input){
  * @param  array  $input
  * @return array
  */
-function groupByTag(array $input){
-    //create an array, for values of 'tags' as elements(and array) that consist
-    //corresponding values of 'name'.
-    $arr_tags = [];
-    //iterate through $input
-    foreach ($input as $value){
-        //iterate through 'tags' as an array and add a value from 'name'
-        //that corresponds to a value from "tags" array.
-        foreach($value['tags'] as $tag){
-            $arr_tags[$tag][] = $value['name'];
-        }
+function groupByTag(array $input)
+{
+  //create an array, for values of 'tags' as elements(and array) that consist
+  //corresponding values of 'name'.
+  $arr_tags = [];
+  //iterate through $input
+  foreach ($input as $value) {
+    //iterate through 'tags' as an array and add a value from 'name'
+    //that corresponds to a value from "tags" array.
+    foreach ($value['tags'] as $tag) {
+      $arr_tags[$tag][] = $value['name'];
     }
-    //sort the array by key.
-    ksort($arr_tags);
-    //sort the values inside each element of $arr_tags.
-    foreach ($arr_tags as &$value){
-        sort($value);
-    }
-    return $arr_tags;
+  }
+  //sort the array by key.
+  ksort($arr_tags);
+  //sort the values inside each element of $arr_tags.
+  foreach ($arr_tags as &$value) {
+    sort($value);
+  }
+  return $arr_tags;
 }
