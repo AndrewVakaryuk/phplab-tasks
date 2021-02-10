@@ -126,8 +126,12 @@ class Calculator
      */
     public function undo()
     {
-        // TODO implement undo logic here
-
+        if (!isset($this->intents)) {
+            throw new \InvalidArgumentException('There is nothing to undo');
+            //array_pop($this->intents);
+        } else {
+            array_pop($this->intents);
+        }
         return $this;
     }
 
@@ -138,8 +142,11 @@ class Calculator
      */
     public function replay()
     {
-        // TODO implement replay logic here
-
+        if (!isset($this->intents)) {
+            throw new \InvalidArgumentException('There is nothing to repeat');
+        } else {
+            $this->intents[] = end($this->intents);
+        }
         return $this;
     }
 
